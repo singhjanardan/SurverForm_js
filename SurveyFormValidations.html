@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        #abc{
+            text-align: center;
+        }
+        .survey-form {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .survey-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .survey-form input[type="text"],
+        .survey-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .survey-form input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .survey-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-form">
+        <form id="surveyForm">
+            <h2 id="abc">Customer Survey Form</h2>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="Enter First Name" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Enter Last Name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+
+            <label for="country">Country:</label>
+            <select id="country" required>
+                <option value="" disabled selected>Select Country</option>
+                <option value="usa">India</option>
+                <option value="uk">Pakistan</option>
+                <option value="uk">France</option>
+                <option value="canada">Canada</option>
+                <option value="uk">Australia</option>
+                <option value="uk">Germany</option>
+                <option value="uk">UK</option>
+            </select>
+
+            <label>Gender:</label>
+            <input type="checkbox" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="checkbox" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="checkbox" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email Id" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" required>
+
+            <button type="submit">Submit</button>
+            <button type="button" onclick="resetForm()">Reset</button>
+        </form>
+    </div>
+
+    <script>
+        const surveyForm = document.getElementById('surveyForm');
+
+        surveyForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(surveyForm);
+
+            let popupContent = '<h2>Survey Form Submission</h2>';
+            for (const [key, value] of formData.entries()) {
+                popupContent += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+
+            const popup = window.open('', 'Survey Form Submission', 'width=400,height=400');
+            popup.document.body.innerHTML = popupContent;
+
+            surveyForm.reset();
+        });
+
+        function resetForm() {
+            surveyForm.reset();
+        }
+    </script>
+</body>
+</html>
